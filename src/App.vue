@@ -38,11 +38,11 @@ body {
 
 <!-- Scoped style -->
 <style scoped>
- /* use the depp selector(>>> or /deep/) to access child element classes */
-.content >>> .robot-name {
+ /* use the depp selector(>>> or /deep/) to access child element classes as shown below */
+/* .content >>> .robot-name {
   color: red;
   border: 2px solid blue;
-}
+} */
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
 }
