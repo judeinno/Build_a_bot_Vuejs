@@ -82,6 +82,9 @@ export default {
       selecteBaseIndex: 0,
     };
   },
+  created() {
+    console.log('Component created');
+  },
   computed: {
     selectedRobot() {
       return {
