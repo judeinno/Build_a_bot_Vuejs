@@ -58,6 +58,7 @@
 
 <script>
 import availableParts from '../data/parts';
+import createHookMixin from './create-hook-mixin';
 
 function getPreviousValidIndex(index, length) {
   const deprecatedIndex = index - 1;
@@ -82,9 +83,7 @@ export default {
       selecteBaseIndex: 0,
     };
   },
-  created() {
-    console.log('Component created');
-  },
+  mixins: [createHookMixin],
   computed: {
     selectedRobot() {
       return {
