@@ -19,7 +19,7 @@ export default new Router({
       component: RobortBuilder,
     },
     {
-      path: '/parts',
+      path: '/parts/:partType/:id',
       name: 'Parts',
       component: PartInfo,
     },
