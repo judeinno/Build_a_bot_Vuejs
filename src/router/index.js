@@ -14,7 +14,7 @@ export default new Router({
     },
     {
       path: '/build',
-      name: 'build ',
+      name: 'Build',
       component: RobortBuilder,
     },
   ],
