@@ -11,27 +11,38 @@
       </nav>
     </header>
     <main>
-      <HomePage />
+      <RobotBuilder />
     </main>
   </div>
 </template>
 
 <script>
-import HomePage from './components/HomePage.vue';
+// import HomePage from './home/HomePage.vue';
+import RobotBuilder from './build/RobotBuilder.vue';
 
 export default {
   name: 'app',
   components: {
-    HomePage,
+    RobotBuilder,
   },
 };
 </script>
 
+<!-- Globel style -->
 <style>
 body {
   background: linear-gradient(to bottom, #555, #999);
   background-attachment: fixed;
 }
+</style>
+
+<!-- Scoped style -->
+<style scoped>
+ /* use the depp selector(>>> or /deep/) to access child element classes as shown below */
+/* .content >>> .robot-name {
+  color: red;
+  border: 2px solid blue;
+} */
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
 }
