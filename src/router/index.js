@@ -8,6 +8,8 @@ import RobortHeads from '../parts/RobortHeads.vue';
 import RobortBases from '../parts/RobortBases.vue';
 import RobortArms from '../parts/RobortArms.vue';
 import RobortTorsos from '../parts/RobortTorsos.vue';
+import SideBarStandard from '../sidebars/SideBarStandard.vue';
+import SideBarBuild from '../sidebars/SideBarBuild.vue';
 
 Vue.use(Router);
 
@@ -16,12 +18,18 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      component: HomePage,
+      components: {
+        default: HomePage,
+        sidebar: SideBarStandard,
+      },
     },
     {
       path: '/build',
       name: 'Build',
-      component: RobortBuilder,
+      components: {
+        default: RobortBuilder,
+        sidebar: SideBarBuild,
+      },
     },
     {
       path: '/parts/browse',
