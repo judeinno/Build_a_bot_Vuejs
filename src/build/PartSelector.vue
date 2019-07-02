@@ -42,7 +42,16 @@ export default {
       return this.parts[this.selectedPartIndex];
     },
   },
+  created() {
+    this.emitSelectePart();
+  },
+  updated() {
+    this.emitSelectePart();
+  },
   methods: {
+    emitSelectePart() {
+      this.$emit('partSelected', this.selectedPart);
+    },
     selectNextPart() {
       this.selectedPartIndex = getNextValidIndex(
         this.selectedPartIndex,
