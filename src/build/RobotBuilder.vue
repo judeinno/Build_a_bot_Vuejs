@@ -93,7 +93,7 @@ export default {
   mixins: [createHookMixin],
   computed: {
     availableParts() {
-      return this.$store.state.parts;
+      return this.$store.state.roborts.parts;
     },
   },
   methods: {
