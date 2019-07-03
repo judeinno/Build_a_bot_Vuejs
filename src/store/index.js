@@ -12,4 +12,9 @@ export default new Vuex.Store({
       state.cart.push(robort);
     },
   },
+  getters: {
+    cartSaleItems(state) {
+      return state.cart.filter(item => item.head.onSale);
+    },
+  },
 });
