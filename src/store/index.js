@@ -15,6 +15,11 @@ export default new Vuex.Store({
         .then(result => commit('updateParts', result.data))
         .catch(console.error);
     },
+    addRobortToCart({ commit, state }, robort) {
+      const cart = [...state.cart, robort];
+      axios.post('/api/cart', cart)
+        .then(() => commit('addRobortToCart', robort));
+    },
   },
   mutations: {
     addRobortToCart(state, robort) {
