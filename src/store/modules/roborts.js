@@ -5,6 +5,7 @@ export default {
   state: {
     cart: [],
     parts: null,
+    foo: 'robot-foo',
   },
   actions: {
     getParts({ commit }) {
@@ -29,6 +30,9 @@ export default {
   getters: {
     cartSaleItems(state) {
       return state.cart.filter(item => item.head.onSale);
+    },
+    foo(state) {
+      return `robot-getter/${state.foo}`;
     },
   },
 };

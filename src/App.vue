@@ -1,5 +1,13 @@
 <template>
   <div id="app">
+    Root-Foo: {{rootFoo}}<br/>
+    Roborts-Foo: {{robortsFoo}}<br/>
+    User-Foo: {{usersFoo}}<br/>
+    <br/>
+    Root Getter Foo: {{rootGetterFoo}}<br/>
+    Roborts Getter Foo: {{robortsGetterFoo}}<br/>
+    Users Getter Foo: {{usersGetterFoo}}<br/>
+
     <header>
       <nav>
         <ul>
@@ -48,6 +56,24 @@ export default {
   computed: {
     cart() {
       return this.$store.state.roborts.cart;
+    },
+    rootFoo() {
+      return this.$store.state.foo;
+    },
+    robortsFoo() {
+      return this.$store.state.roborts.foo;
+    },
+    usersFoo() {
+      return this.$store.state.users.foo;
+    },
+    rootGetterFoo() {
+      return this.$store.getters.foo;
+    },
+    robortsGetterFoo() {
+      return this.$store.getters['roborts/foo'];
+    },
+    usersGetterFoo() {
+      return this.$store.getters['users/foo'];
     },
   },
 };
