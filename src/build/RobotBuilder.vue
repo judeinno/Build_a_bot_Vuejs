@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div v-if="availableParts" class="content">
     <div class="preview">
       <CollapsibleSection>
         <div class="preview-content">
@@ -50,34 +50,20 @@
         @partSelected="part => selectedRobot.base = part"
       />
     </div>
-    <div>
-      <h1>Cart</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Robot</th>
-            <th class="cost">Cost</th>
-          </tr>
-          <tbody>
-            <tr v-for="(robot, index) in cart" :key="index">
-              <td>{{robot.head.title}}</td>
-              <td class="cost">{{robot.cost}}</td>
-            </tr>
-          </tbody>
-        </thead>
-      </table>
-    </div>
   </div>
 </template>
 
 <script>
-import availableParts from '../data/parts';
+import { mapActions, mapMutations } from 'vuex';
 import createHookMixin from './create-hook-mixin';
 import PartSelector from './PartSelector.vue';
 import CollapsibleSection from '../commons/CollapsibleSection.vue';
 
 export default {
   name: 'RobotBuilder',
+  created() {
+    this.getParts();
+  },
   beforeRouteLeave(to, from, next) {
     if (this.addedToCart) {
       next(true);
@@ -95,9 +81,7 @@ export default {
   },
   data() {
     return {
-      availableParts,
       addedToCart: false,
-      cart: [],
       selectedRobot: {
         head: {},
         leftArm: {},
@@ -109,14 +93,19 @@ export default {
   },
   mixins: [createHookMixin],
   computed: {
-
+    availableParts() {
+      return this.$store.state.roborts.parts;
+    },
   },
   methods: {
+    ...mapActions('roborts', ['getParts', 'addRobortToCart']),
+    ...mapMutations('roborts',  ['someMutations']),
     addToCart() {
       const robot = this.selectedRobot;
       const cost = robot.head.cost + robot.leftArm.cost
         + robot.torso.cost + robot.rightArm.cost + robot.base.cost;
-      this.cart.push(Object.assign({}, robot, { cost }));
+      this.addRobortToCart(Object.assign({}, robot, { cost }))
+        .then(() => this.$router.push('/cart'));
       this.addedToCart = true;
     },
   },
@@ -231,15 +220,6 @@ export default {
   width: 210px;
   padding: 3px;
   font-size: 16px;
-}
-
-td, th {
-  text-align: left;
-  padding: 5px;
-  padding-right: 20px;
-}
-.cost {
-  text-align: left;
 }
 .sale-border {
   border: 3px solid red;
