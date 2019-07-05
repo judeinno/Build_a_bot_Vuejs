@@ -50,21 +50,24 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 
 export default {
   name: 'app',
   computed: {
+    // To access state in the root state and module state
+    ...mapState(
+      {
+        rootFoo: 'foo',
+        usersFoo: state => state.users.foo,
+      },
+    ),
+    // Other syntax to access module state
+    ...mapState('roborts', {
+      robortsFoo: 'foo',
+    }),
     cart() {
       return this.$store.state.roborts.cart;
-    },
-    rootFoo() {
-      return this.$store.state.foo;
-    },
-    robortsFoo() {
-      return this.$store.state.roborts.foo;
-    },
-    usersFoo() {
-      return this.$store.state.users.foo;
     },
     rootGetterFoo() {
       return this.$store.getters.foo;
