@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import pinDirective from '../commons/pin-directive';
 
 function getPreviousValidIndex(index, length) {
   const deprecatedIndex = index - 1;
@@ -26,7 +25,6 @@ function getNextValidIndex(index, length) {
 
 export default {
   name: 'PartSelector',
-  directives: { pin: pinDirective },
   props: {
     parts: {
       type: Array,
